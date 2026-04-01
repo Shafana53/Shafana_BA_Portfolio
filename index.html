@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shafana — Business Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #18181f;
+    --accent: #c8f04e;
+    --accent2: #7b6ef6;
+    --text: #f0ede8;
+    --muted: #8a8799;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.03);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 6vw;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 6vw 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(123,110,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(200,240,78,0.3);
+    padding: 0.35rem 0.85rem; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: block;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent2); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted); font-weight: 300;
+    max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: #0a0a0f;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.8rem 1.75rem; border-radius: 100px;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,240,78,0.3); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.8rem 1.75rem; border-radius: 100px;
+    text-decoration: none; transition: background 0.2s;
+    border: 1px solid var(--border); cursor: pointer;
+  }
+  .btn-ghost:hover { background: var(--card-bg); }
+
+  /* HERO RIGHT — STATS */
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    position: relative;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: rgba(123,110,246,0.4); }
+  .stat-card.wide { grid-column: 1 / -1; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem; font-weight: 800;
+    color: var(--accent); line-height: 1; margin-bottom: 0.35rem;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--muted); font-weight: 400; }
+  .stat-card .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .tag {
+    font-size: 0.72rem; font-weight: 500;
+    padding: 0.25rem 0.65rem; border-radius: 100px;
+    background: rgba(123,110,246,0.15); color: #b3adff;
+    letter-spacing: 0.02em;
+  }
+  .tag.green { background: rgba(200,240,78,0.12); color: #c8f04e; }
+  .tag.muted { background: rgba(255,255,255,0.07); color: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 6rem 6vw; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .section-subtitle { color: var(--muted); font-weight: 300; max-width: 560px; margin-bottom: 3.5rem; }
+  .divider { width: 100%; height: 1px; background: var(--border); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); font-weight: 300; margin-bottom: 1.25rem; line-height: 1.85; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; transition: border-color 0.2s;
+  }
+  .highlight-item:hover { border-color: rgba(200,240,78,0.3); }
+  .hi-icon {
+    width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .hi-icon.purple { background: rgba(123,110,246,0.15); }
+  .hi-icon.green { background: rgba(200,240,78,0.1); }
+  .hi-icon.coral { background: rgba(216,90,48,0.15); }
+  .hi-title { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.15rem; }
+  .hi-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+
+  /* SKILLS */
+  .skills-bg { background: var(--bg2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-4px); border-color: rgba(123,110,246,0.4); }
+  .skill-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 1.25rem;
+  }
+  .skill-icon.v { background: rgba(123,110,246,0.15); }
+  .skill-icon.g { background: rgba(200,240,78,0.1); }
+  .skill-icon.b { background: rgba(55,138,221,0.15); }
+  .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    font-size: 0.75rem; padding: 0.3rem 0.75rem; border-radius: 100px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+  .project-card {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 2.5rem; align-items: start;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 24px; padding: 2.5rem;
+    transition: border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .project-card.p1::before { background: linear-gradient(90deg, var(--accent2), transparent); }
+  .project-card.p2::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .project-card.p3::before { background: linear-gradient(90deg, #ff6b6b, transparent); }
+  .project-card:hover { border-color: rgba(255,255,255,0.15); }
+  .project-card:hover::before { opacity: 1; }
+  .proj-left { display: flex; flex-direction: column; gap: 1rem; }
+  .proj-num {
+    font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800;
+    color: rgba(255,255,255,0.06); line-height: 1;
+  }
+  .proj-type {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent2);
+    border: 1px solid rgba(123,110,246,0.35); border-radius: 100px;
+    padding: 0.25rem 0.7rem; display: inline-block; width: fit-content;
+  }
+  .p2 .proj-type { color: var(--accent); border-color: rgba(200,240,78,0.35); }
+  .p3 .proj-type { color: #ff9a9a; border-color: rgba(255,107,107,0.35); }
+  .proj-title {
+    font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;
+  }
+  .proj-desc { color: var(--muted); font-weight: 300; font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.25rem; }
+  .proj-modules { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .proj-module {
+    font-size: 0.72rem; font-weight: 500; padding: 0.3rem 0.75rem;
+    border-radius: 100px; background: rgba(255,255,255,0.05);
+    color: var(--muted); border: 1px solid var(--border);
+  }
+
+  /* EXPERIENCE */
+  .exp-bg { background: var(--bg2); }
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .exp-item { padding-left: 2.5rem; padding-bottom: 3rem; position: relative; }
+  .exp-item::before {
+    content: ''; position: absolute; left: -5px; top: 6px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent2); border: 2px solid var(--bg2);
+  }
+  .exp-item:first-child::before { background: var(--accent); }
+  .exp-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .exp-company { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+  .exp-period {
+    font-size: 0.75rem; font-weight: 500; color: var(--muted);
+    background: rgba(255,255,255,0.05); padding: 0.2rem 0.65rem;
+    border-radius: 100px; border: 1px solid var(--border);
+  }
+  .exp-role { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li {
+    font-size: 0.9rem; color: var(--muted); font-weight: 300;
+    padding-left: 1.25rem; position: relative; line-height: 1.7;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0; color: var(--accent2); font-size: 0.8rem;
+  }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+  .cert-card {
+    display: flex; align-items: center; gap: 1.25rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(200,240,78,0.3); }
+  .cert-icon {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    background: rgba(200,240,78,0.1);
+  }
+  .cert-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.2rem; }
+  .cert-year { font-size: 0.78rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-bg { background: var(--bg2); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .contact-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem;
+  }
+  .contact-heading span { color: var(--accent); }
+  .contact-desc { color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem; border-radius: 14px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(200,240,78,0.4); background: rgba(200,240,78,0.04); }
+  .cl-icon {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; background: rgba(255,255,255,0.06);
+  }
+  .cl-label { font-size: 0.78rem; color: var(--muted); }
+  .cl-value { font-size: 0.92rem; font-weight: 500; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 0.9rem 1.1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--text); outline: none; transition: border-color 0.2s;
+    resize: none;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(123,110,246,0.5); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--muted);
+  }
+  footer span { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-stats { display: none; }
+    .about-grid, .contact-inner, .project-card { grid-template-columns: 1fr; }
+    .project-card { padding: 1.75rem; }
+    nav .nav-links { display: none; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Shafana</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1>Business <em>Analyst</em><br>& Product Thinker</h1>
+    <p class="hero-desc">Translating complex business needs into clear, actionable requirements across HRMS, e-commerce, and hospitality SaaS platforms. AWS certified. Agile-native.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects ↓</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Platforms delivered</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">AWS</div>
+      <div class="stat-label">Cloud certified</div>
+    </div>
+    <div class="stat-card wide">
+      <div class="stat-label" style="margin-bottom: 0.75rem;">Domain expertise</div>
+      <div class="tag-row">
+        <span class="tag">HRMS</span>
+        <span class="tag">E-commerce</span>
+        <span class="tag">Hospitality</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag green">Agile · Kanban</span>
+        <span class="tag muted">JIRA · Confluence</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">8.7</div>
+      <div class="stat-label">BE CGPA · CS</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Certs earned</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About me</div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <div class="section-title">Bridging business<br>& delivery</div>
+      <p>I'm a Business Analyst with hands-on experience across <strong>HRMS, e-commerce, and hospitality SaaS platforms</strong>, working in fast-paced Agile (Kanban) environments since late 2024.</p>
+      <p>My strength lies in turning ambiguous business problems into <strong>crisp user stories, acceptance criteria, and structured workflows</strong> that developers, QA teams, and stakeholders can all align on.</p>
+      <p>I hold a <strong>BE in Computer Science from Sahyadri College of Engineering, Mangaluru</strong> with a CGPA of 8.7, and I'm an <strong>AWS Certified Cloud Practitioner</strong> — giving me both the business and technical context to navigate complex platform discussions.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <div class="hi-icon purple">📋</div>
+        <div>
+          <div class="hi-title">Requirement clarity</div>
+          <div class="hi-desc">End-to-end requirements gathering, user story writing, and acceptance criteria that reduce dev ambiguity.</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon green">🔄</div>
+        <div>
+          <div class="hi-title">Agile delivery flow</div>
+          <div class="hi-desc">Backlog refinement, sprint coordination, and flow metrics analysis to keep delivery predictable.</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon coral">🔗</div>
+        <div>
+          <div class="hi-title">System integration</div>
+          <div class="hi-desc">Cross-platform integration coordination across HRMS, hospitality, and e-commerce modules.</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon purple">🧪</div>
+        <div>
+          <div class="hi-title">UAT & quality</div>
+          <div class="hi-desc">Proactive UAT planning and execution that surfaces gaps early and improves defect containment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-label">What I work with</div>
+  <div class="section-title reveal">Skills & tools</div>
+  <p class="section-subtitle reveal">A cross-functional toolkit spanning business analysis, agile delivery, and technical platforms.</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon v">📊</div>
+      <h3>Business Analysis</h3>
+      <div class="skill-pills">
+        <span class="pill">Requirements Gathering</span>
+        <span class="pill">User Stories</span>
+        <span class="pill">Acceptance Criteria</span>
+        <span class="pill">Backlog Refinement</span>
+        <span class="pill">UAT Support</span>
+        <span class="pill">Stakeholder Coordination</span>
+        <span class="pill">Scope Management</span>
+        <span class="pill">User Story Mapping</span>
+        <span class="pill">Workflow Visualisation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon g">⚡</div>
+      <h3>Agile & Tools</h3>
+      <div class="skill-pills">
+        <span class="pill">Agile</span>
+        <span class="pill">Kanban</span>
+        <span class="pill">JIRA</span>
+        <span class="pill">Confluence</span>
+        <span class="pill">Flow Metrics</span>
+        <span class="pill">SDLC</span>
+        <span class="pill">Change Request Management</span>
+        <span class="pill">Sprint Planning</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon b">🔧</div>
+      <h3>Analytics & Technical</h3>
+      <div class="skill-pills">
+        <span class="pill">Excel</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">AWS Cloud Practitioner</span>
+        <span class="pill">Flowcharts</span>
+        <span class="pill">Functional Workflows</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Featured work</div>
+  <div class="section-title reveal">Projects</div>
+  <p class="section-subtitle reveal">End-to-end BA ownership across three complex SaaS platforms.</p>
+  <div class="projects-list">
+
+    <div class="project-card p1 reveal">
+      <div class="proj-left">
+        <div class="proj-num">01</div>
+        <span class="proj-type">Hospitality · SaaS</span>
+      </div>
+      <div>
+        <div class="proj-title">Hospitality Management Platform</div>
+        <p class="proj-desc">Led end-to-end requirement gathering and delivery tracking for a hospitality application built on multiple integrated modules. The platform supports remote device management for hotels, centralised content publishing for TV screens, and multi-tier user management across organisations and sites. Handled cross-team system integration and coordinated alignment across Content, Device, and Admin modules built by separate engineering squads.</p>
+        <div class="proj-modules">
+          <span class="proj-module">Content Management</span>
+          <span class="proj-module">Custom Visual Editor</span>
+          <span class="proj-module">Device Management</span>
+          <span class="proj-module">TV Configuration</span>
+          <span class="proj-module">Site & Org Management</span>
+          <span class="proj-module">User Management</span>
+          <span class="proj-module">System Integration</span>
+          <span class="proj-module">Brand Guidelines</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card p2 reveal">
+      <div class="proj-left">
+        <div class="proj-num">02</div>
+        <span class="proj-type">HRMS · SaaS</span>
+      </div>
+      <div>
+        <div class="proj-title">HRMS SaaS Platform</div>
+        <p class="proj-desc">Worked as the primary BA on a multi-tenant HRMS SaaS product covering the full HR lifecycle — from employee onboarding through payroll, leave, performance, and offboarding. Owned requirements for multiple modules, conducted backlog refinement with dev and QA teams, managed scope and change requests, and supported UAT to ensure functional completeness across the platform.</p>
+        <div class="proj-modules">
+          <span class="proj-module">Onboarding</span>
+          <span class="proj-module">Employee Lifecycle</span>
+          <span class="proj-module">Payroll</span>
+          <span class="proj-module">Leave Management</span>
+          <span class="proj-module">Performance</span>
+          <span class="proj-module">Multi-tenant</span>
+          <span class="proj-module">UAT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card p3 reveal">
+      <div class="proj-left">
+        <div class="proj-num">03</div>
+        <span class="proj-type">Healthcare · US</span>
+      </div>
+      <div>
+        <div class="proj-title">Healthcare Vitals Monitoring Platform</div>
+        <p class="proj-desc">Contributed requirements and delivery support for a US-facing healthcare platform designed to capture and monitor patient vitals. The system supports multiple vital types, patient and observer roles, multi-organisation setups, and real-time monitoring views. Coordinated requirement clarity across clinical workflows and integration points between monitoring devices and the platform backend.</p>
+        <div class="proj-modules">
+          <span class="proj-module">Vitals Monitoring</span>
+          <span class="proj-module">Patient Management</span>
+          <span class="proj-module">Observer Roles</span>
+          <span class="proj-module">Multi-org</span>
+          <span class="proj-module">Device Integration</span>
+          <span class="proj-module">US Healthcare</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-bg">
+  <div class="section-label">Career</div>
+  <div class="section-title reveal">Experience</div>
+  <p class="section-subtitle reveal">A journey from engineering intern to owning full product discovery and delivery cycles.</p>
+  <div class="exp-timeline">
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-company">7EDGE Private Ltd</span>
+        <span class="exp-period">Dec 2024 – Present</span>
+      </div>
+      <div class="exp-role">Agile Business Analyst</div>
+      <ul class="exp-bullets">
+        <li>Owned requirement gathering for HRMS, hospitality, and healthcare modules working directly with business stakeholders.</li>
+        <li>Translated business needs into user stories and acceptance criteria, reducing ambiguity for dev and QA teams.</li>
+        <li>Facilitated backlog refinement sessions ensuring all items met Definition of Ready before sprint commitment.</li>
+        <li>Managed change requests and scope creep by analysing impact and aligning stakeholders on trade-offs.</li>
+        <li>Created user story maps and functional flowcharts for product discovery and shared understanding in refinement.</li>
+        <li>Supported UAT planning and execution, contributing to improved defect containment across releases.</li>
+        <li>Analysed Agile flow metrics and delivery data to improve estimation accuracy and predictability.</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-company">CodeCraft Technologies</span>
+        <span class="exp-period">Feb 2024 – Oct 2024</span>
+      </div>
+      <div class="exp-role">Intern Software Engineer</div>
+      <ul class="exp-bullets">
+        <li>Gained end-to-end SDLC exposure within Agile sprint cycles.</li>
+        <li>Collaborated with developers and analysts on requirement interpretation and technical feasibility.</li>
+        <li>Supported testing, bug triage, and sprint activities to strengthen requirement-to-delivery workflows.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <div class="section-title reveal">Certifications & Education</div>
+  <div class="certs-grid reveal" style="margin-bottom: 3rem;">
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">AWS Certified Cloud Practitioner</div>
+        <div class="cert-year">Amazon Web Services · 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📘</div>
+      <div>
+        <div class="cert-name">Project Management Certification</div>
+        <div class="cert-year">Udemy · 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">BE – Computer Science</div>
+        <div class="cert-year">Sahyadri College, Mangaluru · CGPA 8.7 · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Let's connect</div>
+      <div class="contact-heading">Let's work<br><span>together.</span></div>
+      <p class="contact-desc">Open to BA, product, or requirements-focused roles. Whether you're building a SaaS platform, scaling a product team, or need someone who can bridge the gap between business and engineering — let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:shifashafana14@gmail.com" class="contact-link">
+          <div class="cl-icon">✉️</div>
+          <div>
+            <div class="cl-label">Email</div>
+            <div class="cl-value">shifashafana14@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+918971091841" class="contact-link">
+          <div class="cl-icon">📱</div>
+          <div>
+            <div class="cl-label">Phone</div>
+            <div class="cl-value">+91 8971091841</div>
+          </div>
+        </a>
+        <a href="#" class="contact-link">
+          <div class="cl-icon">📍</div>
+          <div>
+            <div class="cl-label">Location</div>
+            <div class="cl-value">Mangaluru, Karnataka, India</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>Built with intention · <span>Shafana</span> · 2025</div>
+  <div>Mangaluru, Karnataka, India</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
